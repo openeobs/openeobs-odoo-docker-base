@@ -91,6 +91,10 @@ describe "Odoo 8.0 Docker image - Dependencies" do
     it{ should be_installed }
   end
 
+  describe package('postgresql-client-common') do
+    it{ should be_installed }
+  end
+
   describe package('psycogreen') do
     it { should be_installed.by('pip') }
   end
