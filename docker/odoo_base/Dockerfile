@@ -2,6 +2,7 @@ FROM debian:jessie
 MAINTAINER Odoo S.A. <info@odoo.com>
 
 # Install some deps, lessc and less-plugin-clean-css, and wkhtmltopdf
+# SETTING LOCALE TO en_GB: In order to set up the en_GB locale we need to install locales package, add the en_GB definition to /etc/locales.gen and run locale-gen
 RUN set -x; \
         apt-get update \
         && apt-get install -y --no-install-recommends \
