@@ -25,6 +25,9 @@ RUN set -x; \
             libjpeg-dev \
             netcat \
             postgresql-client \
+            locales \
+        && sed -i -e 's/# en_GB.UTF-8 UTF-8/en_GB.UTF-8 UTF-8/' /etc/locale.gen \
+        && locale-gen \
         && curl -o wkhtmltox.deb -SL http://nightly.odoo.com/extra/wkhtmltox-0.12.1.2_linux-jessie-amd64.deb \
         && echo '40e8b906de658a2221b15e4e8cd82565a47d7ee8 wkhtmltox.deb' | sha1sum -c - \
         && dpkg --force-depends -i wkhtmltox.deb \
@@ -32,3 +35,7 @@ RUN set -x; \
         && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false -o APT::AutoRemove::SuggestsImportant=false npm \
         && rm -rf /var/lib/apt/lists/* wkhtmltox.deb \
         && pip install psycogreen==1.0
+
+ENV LANG en_GB.UTF-8
+ENV LANUAGE en_GB:en
+ENV LC_ALL en_GB.UTF-8
